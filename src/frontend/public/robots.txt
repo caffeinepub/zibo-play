@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ziboplay.com/sitemap.xml
+Sitemap: https://ziboplay.app/sitemap.xml
+
+# Crawl-delay for respectful bots
+Crawl-delay: 1

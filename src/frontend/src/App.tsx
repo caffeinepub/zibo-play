@@ -26,7 +26,6 @@ import { Fragment, useEffect, useState } from "react";
 
 const MOBILE_APK_URL = "https://n.shopnojaal.top/ziboplayapp/mobile_zibo.apk";
 const TV_APK_URL = "https://n.shopnojaal.top/ziboplayapp/tv_zibo.apk";
-const DOWNLOAD_URL = MOBILE_APK_URL;
 const WHATSAPP_URL = "https://wa.me/8801626173639";
 
 const features = [
@@ -270,9 +269,111 @@ function FAQItem({ q, a }: { q: string; a: string }) {
   );
 }
 
+function DownloadModal({
+  open,
+  onClose,
+}: { open: boolean; onClose: () => void }) {
+  if (!open) return null;
+  return (
+    // biome-ignore lint/a11y/useKeyWithClickEvents: modal backdrop closes on click, keyboard handled by close button
+    <div
+      data-ocid="download.modal"
+      role="presentation"
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 backdrop-blur-sm"
+      onClick={onClose}
+    >
+      <motion.div
+        initial={{ opacity: 0, scale: 0.92, y: 16 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.92, y: 16 }}
+        transition={{ duration: 0.22, ease: "easeOut" }}
+        className="relative bg-[#0f0f1a] border border-white/10 rounded-2xl p-8 w-full max-w-sm mx-4 shadow-2xl"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <button
+          type="button"
+          onClick={onClose}
+          data-ocid="download.close_button"
+          className="absolute top-4 right-4 text-white/50 hover:text-white transition-colors"
+          aria-label="Close download dialog"
+        >
+          <X className="w-5 h-5" />
+        </button>
+        <h2 className="text-white text-xl font-bold text-center mb-2">
+          Download Zibo Play
+        </h2>
+        <p className="text-white/50 text-sm text-center mb-8">
+          Choose your device to download
+        </p>
+        <div className="flex flex-col gap-4">
+          {/* Mobile Button */}
+          <a
+            href={MOBILE_APK_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-ocid="download.secondary_button"
+            className="flex items-center gap-4 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-[oklch(0.55_0.22_25/0.5)] rounded-xl p-4 transition-all group"
+          >
+            <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-[oklch(0.55_0.22_25/0.1)] group-hover:bg-[oklch(0.55_0.22_25/0.2)] transition-colors shrink-0">
+              <svg
+                viewBox="0 0 24 24"
+                className="w-7 h-7 fill-[oklch(0.65_0.22_25)]"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-label="Mobile phone"
+                role="img"
+              >
+                <title>Mobile phone</title>
+                <path d="M17 2H7C5.9 2 5 2.9 5 4v16c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-5 18c-.83 0-1.5-.67-1.5-1.5S11.17 17 12 17s1.5.67 1.5 1.5S12.83 20 12 20zm5-4H7V5h10v11z" />
+              </svg>
+            </div>
+            <div>
+              <div className="text-white font-semibold text-base">
+                Download for Mobile
+              </div>
+              <div className="text-white/40 text-xs mt-0.5">
+                Android APK · mobile_zibo.apk
+              </div>
+            </div>
+          </a>
+          {/* TV Button */}
+          <a
+            href={TV_APK_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-ocid="download.primary_button"
+            className="flex items-center gap-4 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-[oklch(0.55_0.22_25/0.5)] rounded-xl p-4 transition-all group"
+          >
+            <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-[oklch(0.55_0.22_25/0.1)] group-hover:bg-[oklch(0.55_0.22_25/0.2)] transition-colors shrink-0">
+              <svg
+                viewBox="0 0 24 24"
+                className="w-7 h-7 fill-[oklch(0.65_0.22_25)]"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-label="Television"
+                role="img"
+              >
+                <title>Television</title>
+                <path d="M21 3H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h5l-1 1v1h10v-1l-1-1h5c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 14H3V5h18v12z" />
+              </svg>
+            </div>
+            <div>
+              <div className="text-white font-semibold text-base">
+                Download for TV
+              </div>
+              <div className="text-white/40 text-xs mt-0.5">
+                Android TV APK · tv_zibo.apk
+              </div>
+            </div>
+          </a>
+        </div>
+      </motion.div>
+    </div>
+  );
+}
+
 export default function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [downloadModal, setDownloadModal] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -291,6 +392,15 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <AnimatePresence>
+        {downloadModal && (
+          <DownloadModal
+            open={downloadModal}
+            onClose={() => setDownloadModal(false)}
+          />
+        )}
+      </AnimatePresence>
+
       {/* NAVBAR */}
       <header
         className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-md transition-all duration-300 ${
@@ -326,18 +436,12 @@ export default function App() {
 
             <div className="flex items-center gap-2 sm:gap-3">
               <Button
-                asChild
                 data-ocid="nav.primary_button"
                 size="sm"
+                onClick={() => setDownloadModal(true)}
                 className="brand-gradient hover:opacity-90 transition-opacity text-white font-semibold animate-pulse-glow text-xs sm:text-sm"
               >
-                <a
-                  href={DOWNLOAD_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Download App
-                </a>
+                Download App
               </Button>
               <button
                 className="md:hidden p-2 rounded-lg hover:bg-surface-2 transition-colors"
@@ -375,15 +479,16 @@ export default function App() {
                     {item}
                   </a>
                 ))}
-                <a
-                  href={DOWNLOAD_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="block mt-3 px-4 py-3.5 rounded-xl brand-gradient text-white text-center font-bold brand-glow"
+                <button
+                  type="button"
+                  onClick={() => {
+                    setDownloadModal(true);
+                    setMobileMenuOpen(false);
+                  }}
+                  className="block w-full mt-3 px-4 py-3.5 rounded-xl brand-gradient text-white text-center font-bold brand-glow"
                 >
                   Download App
-                </a>
+                </button>
               </div>
             </motion.div>
           )}
@@ -475,19 +580,13 @@ export default function App() {
               className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-center md:items-start"
             >
               <Button
-                asChild
                 size="lg"
                 data-ocid="hero.primary_button"
+                onClick={() => setDownloadModal(true)}
                 className="w-full sm:w-auto brand-gradient hover:opacity-90 transition-opacity text-white font-bold text-base sm:text-lg h-12 sm:h-14 2xl:h-16 px-8 sm:px-10 2xl:px-14 brand-glow animate-pulse-glow"
               >
-                <a
-                  href={DOWNLOAD_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Play className="w-4 h-4 sm:w-5 sm:h-5 mr-2 fill-white" />
-                  Download App Now
-                </a>
+                <Play className="w-4 h-4 sm:w-5 sm:h-5 mr-2 fill-white" />
+                Download App Now
               </Button>
               <Button
                 asChild
@@ -702,7 +801,7 @@ export default function App() {
               <Button
                 asChild
                 size="lg"
-                data-ocid="download.primary_button"
+                data-ocid="download.tv_button"
                 className="w-full sm:w-auto brand-gradient hover:opacity-90 transition-opacity text-white font-bold text-base sm:text-lg h-14 sm:h-16 2xl:h-20 px-8 sm:px-12 2xl:px-16 2xl:text-xl brand-glow animate-pulse-glow"
               >
                 <a href={TV_APK_URL} target="_blank" rel="noopener noreferrer">
@@ -713,7 +812,7 @@ export default function App() {
               <Button
                 asChild
                 size="lg"
-                data-ocid="download.secondary_button"
+                data-ocid="download.mobile_button"
                 className="w-full sm:w-auto bg-surface-2 hover:bg-surface-3 border border-border text-foreground font-bold text-base sm:text-lg h-14 sm:h-16 2xl:h-20 px-8 sm:px-12 2xl:px-16 2xl:text-xl"
               >
                 <a
@@ -1048,13 +1147,11 @@ export default function App() {
               Ready to start watching?
             </p>
             <Button
-              asChild
               size="lg"
+              onClick={() => setDownloadModal(true)}
               className="w-full sm:w-auto brand-gradient hover:opacity-90 text-white font-bold px-8 sm:px-10 h-12 sm:h-14 brand-glow animate-pulse-glow"
             >
-              <a href={DOWNLOAD_URL} target="_blank" rel="noopener noreferrer">
-                Download Zibo Play Free
-              </a>
+              Download Zibo Play Free
             </Button>
           </motion.div>
         </div>
@@ -1091,14 +1188,13 @@ export default function App() {
                 {item}
               </a>
             ))}
-            <a
-              href={DOWNLOAD_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              type="button"
+              onClick={() => setDownloadModal(true)}
               className="text-xs sm:text-sm text-brand-red hover:opacity-80 transition-opacity font-medium"
             >
               Download App
-            </a>
+            </button>
           </div>
         </div>
       </footer>

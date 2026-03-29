@@ -309,8 +309,7 @@ function DownloadModal({
           {/* Mobile Button */}
           <a
             href={MOBILE_APK_URL}
-            target="_blank"
-            rel="noopener noreferrer"
+            download
             data-ocid="download.secondary_button"
             className="flex items-center gap-4 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-[oklch(0.55_0.22_25/0.5)] rounded-xl p-4 transition-all group"
           >
@@ -338,8 +337,7 @@ function DownloadModal({
           {/* TV Button */}
           <a
             href={TV_APK_URL}
-            target="_blank"
-            rel="noopener noreferrer"
+            download
             data-ocid="download.primary_button"
             className="flex items-center gap-4 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-[oklch(0.55_0.22_25/0.5)] rounded-xl p-4 transition-all group"
           >
@@ -804,7 +802,7 @@ export default function App() {
                 data-ocid="download.tv_button"
                 className="w-full sm:w-auto brand-gradient hover:opacity-90 transition-opacity text-white font-bold text-base sm:text-lg h-14 sm:h-16 2xl:h-20 px-8 sm:px-12 2xl:px-16 2xl:text-xl brand-glow animate-pulse-glow"
               >
-                <a href={TV_APK_URL} target="_blank" rel="noopener noreferrer">
+                <a href={TV_APK_URL} download>
                   <Tv className="w-5 h-5 mr-2 sm:mr-3" />
                   Download for TV
                 </a>
@@ -815,11 +813,7 @@ export default function App() {
                 data-ocid="download.mobile_button"
                 className="w-full sm:w-auto bg-surface-2 hover:bg-surface-3 border border-border text-foreground font-bold text-base sm:text-lg h-14 sm:h-16 2xl:h-20 px-8 sm:px-12 2xl:px-16 2xl:text-xl"
               >
-                <a
-                  href={MOBILE_APK_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                <a href={MOBILE_APK_URL} download>
                   <Smartphone className="w-5 h-5 mr-2 sm:mr-3" />
                   Download for Mobile
                 </a>

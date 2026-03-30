@@ -288,7 +288,7 @@ function DownloadModal({
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.92, y: 16 }}
         transition={{ duration: 0.22, ease: "easeOut" }}
-        className="relative bg-[#0f0f1a] border border-white/10 rounded-2xl p-8 w-full max-w-md mx-4 shadow-2xl"
+        className="relative bg-[#0f0f1a] border border-white/10 rounded-2xl p-4 sm:p-6 md:p-8 w-full max-w-md sm:max-w-lg xl:max-w-xl mx-3 sm:mx-4 shadow-2xl overflow-y-auto max-h-[90vh]"
         onClick={(e) => e.stopPropagation()}
       >
         <button
@@ -303,10 +303,10 @@ function DownloadModal({
         <h2 className="text-white text-xl font-bold text-center mb-2">
           Download Zibo Play
         </h2>
-        <p className="text-white/50 text-sm text-center mb-8">
+        <p className="text-white/50 text-sm text-center mb-4 sm:mb-6 md:mb-8">
           Choose your device to download
         </p>
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-2 sm:gap-3 md:gap-4">
           {/* Mobile Button */}
           <a
             href={MOBILE_APK_URL}
@@ -314,7 +314,7 @@ function DownloadModal({
             data-ocid="download.secondary_button"
             className="flex items-center gap-4 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-[oklch(0.55_0.22_25/0.5)] rounded-xl p-4 transition-all group"
           >
-            <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-[oklch(0.55_0.22_25/0.1)] group-hover:bg-[oklch(0.55_0.22_25/0.2)] transition-colors shrink-0">
+            <div className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-xl bg-[oklch(0.55_0.22_25/0.1)] group-hover:bg-[oklch(0.55_0.22_25/0.2)] transition-colors shrink-0">
               <svg
                 viewBox="0 0 24 24"
                 className="w-7 h-7 fill-[oklch(0.65_0.22_25)]"
@@ -342,7 +342,7 @@ function DownloadModal({
             data-ocid="download.primary_button"
             className="flex items-center gap-4 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-[oklch(0.55_0.22_25/0.5)] rounded-xl p-4 transition-all group"
           >
-            <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-[oklch(0.55_0.22_25/0.1)] group-hover:bg-[oklch(0.55_0.22_25/0.2)] transition-colors shrink-0">
+            <div className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-xl bg-[oklch(0.55_0.22_25/0.1)] group-hover:bg-[oklch(0.55_0.22_25/0.2)] transition-colors shrink-0">
               <svg
                 viewBox="0 0 24 24"
                 className="w-7 h-7 fill-[oklch(0.65_0.22_25)]"
@@ -373,7 +373,7 @@ function DownloadModal({
             data-ocid="download.toggle"
             className="flex items-center gap-4 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-[oklch(0.7_0.18_260/0.5)] rounded-xl p-4 transition-all group w-full text-left"
           >
-            <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-[oklch(0.7_0.18_260/0.08)] group-hover:bg-[oklch(0.7_0.18_260/0.15)] transition-colors shrink-0">
+            <div className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-xl bg-[oklch(0.7_0.18_260/0.08)] group-hover:bg-[oklch(0.7_0.18_260/0.15)] transition-colors shrink-0">
               <svg
                 viewBox="0 0 24 24"
                 className="w-7 h-7 fill-[oklch(0.72_0.18_260)]"
@@ -404,7 +404,7 @@ function DownloadModal({
             data-ocid="download.tab"
             className="flex items-center gap-4 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-[oklch(0.82_0.08_240/0.5)] rounded-xl p-4 transition-all group w-full text-left"
           >
-            <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-[oklch(0.82_0.08_240/0.08)] group-hover:bg-[oklch(0.82_0.08_240/0.15)] transition-colors shrink-0">
+            <div className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-xl bg-[oklch(0.82_0.08_240/0.08)] group-hover:bg-[oklch(0.82_0.08_240/0.15)] transition-colors shrink-0">
               <svg
                 viewBox="0 0 24 24"
                 className="w-7 h-7 fill-[oklch(0.85_0.06_240)]"
@@ -857,7 +857,7 @@ export default function App() {
             <motion.div
               variants={fadeUp}
               custom={3}
-              className="flex flex-col sm:flex-row gap-4 sm:gap-5 justify-center"
+              className="flex flex-col sm:flex-row sm:flex-wrap gap-4 sm:gap-5 justify-center"
             >
               <Button
                 asChild
@@ -879,6 +879,17 @@ export default function App() {
                 <a href={MOBILE_APK_URL} download>
                   <Smartphone className="w-5 h-5 mr-2 sm:mr-3" />
                   Download for Mobile
+                </a>
+              </Button>
+              <Button
+                asChild
+                size="lg"
+                data-ocid="download.website_button"
+                className="w-full sm:w-auto bg-[oklch(0.18_0.06_260)] hover:bg-[oklch(0.23_0.08_260)] border border-[oklch(0.4_0.15_260/0.4)] hover:border-[oklch(0.55_0.2_260/0.6)] text-[oklch(0.85_0.12_260)] font-bold text-base sm:text-lg h-14 sm:h-16 2xl:h-20 px-8 sm:px-12 2xl:px-16 2xl:text-xl transition-all"
+              >
+                <a href={PC_WEB_URL} target="_blank" rel="noopener noreferrer">
+                  <Globe className="w-5 h-5 mr-2 sm:mr-3" />
+                  Website / PC / iOS
                 </a>
               </Button>
             </motion.div>

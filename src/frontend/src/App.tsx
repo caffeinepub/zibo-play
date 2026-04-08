@@ -1243,9 +1243,32 @@ export default function App() {
               Zibo Play — The Worldwide OTT
             </p>
 
-            <p className="text-muted-foreground text-xs sm:text-sm text-center sm:text-right">
-              © {new Date().getFullYear()} Zibo Play. All rights reserved.
-            </p>
+            <div className="flex flex-col items-center sm:items-end gap-2">
+              <p className="text-muted-foreground text-xs sm:text-sm text-center sm:text-right">
+                © {new Date().getFullYear()} Zibo Play. All rights reserved.
+              </p>
+              <a
+                href="https://www.facebook.com/people/Zibo-Play/61584874500498/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition-transform duration-200 hover:scale-110 hover:brightness-110"
+              >
+                <span className="sr-only">Zibo Play on Facebook</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 40 40"
+                  width="36"
+                  height="36"
+                  aria-hidden="true"
+                >
+                  <circle cx="20" cy="20" r="20" fill="#1877F2" />
+                  <path
+                    d="M22.676 20.82h-2.34v8.18h-3.39V20.82h-1.64v-2.88h1.64v-1.87c0-2.16 1.01-3.45 3.45-3.45h2.13v2.88h-1.33c-.99 0-1.06.37-1.06 1.06v1.38h2.42l-.28 2.88z"
+                    fill="#fff"
+                  />
+                </svg>
+              </a>
+            </div>
           </div>
 
           <div className="mt-6 sm:mt-8 pt-6 sm:pt-8 border-t border-border/50 flex flex-wrap justify-center gap-4 sm:gap-6">

@@ -24,8 +24,10 @@ import {
 import { AnimatePresence, motion } from "motion/react";
 import { Fragment, useEffect, useState } from "react";
 
-const MOBILE_APK_URL = "https://n.shopnojaal.top/ziboplayapp/mobile_zibo.apk";
-const TV_APK_URL = "https://n.shopnojaal.top/ziboplayapp/tv_zibo.apk";
+const MOBILE_APK_URL =
+  "https://ia600600.us.archive.org/25/items/mobile_zibo_new/mobile_zibo_new.apk";
+const TV_APK_URL =
+  "https://ia600908.us.archive.org/7/items/tv_zibo/tv_zibo.apk";
 const PC_WEB_URL = "https://myziboplay.xyz/web";
 const WHATSAPP_URL = "https://wa.me/8801626173639";
 

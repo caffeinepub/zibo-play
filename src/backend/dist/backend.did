@@ -1,0 +1,29 @@
+type Time = int;
+type ReviewInput = 
+ record {
+   comment: text;
+   name: text;
+   rating: nat;
+ };
+type Review = 
+ record {
+   comment: text;
+   id: nat;
+   name: text;
+   rating: nat;
+   submittedAt: Time;
+ };
+type DownloadLinks = 
+ record {
+   androidApk: text;
+   androidTv: text;
+   appStore: text;
+   fireTv: text;
+   googlePlay: text;
+ };
+service : {
+  getAllReviews: () -> (vec Review) query;
+  getDownloadLinks: () -> (DownloadLinks) query;
+  getReviewCount: () -> (nat) query;
+  submitReview: (input: ReviewInput) -> (text);
+}
